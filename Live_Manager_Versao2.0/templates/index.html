@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciador de Lives</title>
+    <link rel="icon" href="https://5a3864bbc6.cbaul-cdnwnd.com/a5752067f9d5fdee0a74b486f3ae9c23/200000099-a11d7a11d8/LOGO%20OTALDOTROIA.jpeg?ph=5a3864bbc6" type="image/jpeg">
+    <style>
+        :root {
+            --bg-color: #f8f9fa;
+            --container-bg: #ffffff;
+            --text-color: #343a40;
+            --link-color: #007BFF;
+            --border-color: #dee2e6;
+        }
+        body.dark-mode {
+            --bg-color: #121212;
+            --container-bg: #1e1e1e;
+            --text-color: #e0e0e0;
+            --link-color: #3399ff;
+            --border-color: #333;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            padding: 2em;
+            max-width: 800px;
+            margin: auto;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .header { text-align: center; margin-bottom: 2em; }
+        .header img { max-width: 250px; margin-bottom: 1em; border-radius: 15px; }
+        h1, h2 { color: var(--text-color); }
+        a { color: var(--link-color); text-decoration: none; font-weight: 500; }
+        a:hover { text-decoration: underline; }
+        .container { 
+            background-color: var(--container-bg); 
+            padding: 20px 25px; 
+            border-radius: 8px; 
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        ul { list-style-type: none; padding: 0; }
+        li { margin-bottom: 10px; }
+        .button {
+            display: inline-block;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            margin-top: 5px;
+            margin-right: 10px;
+            transition: background-color 0.2s;
+        }
+        .button-twitch { background-color: #6441a5; }
+        .button-twitch:hover { background-color: #523486; }
+        .button-youtube { background-color: #c4302b; }
+        .button-youtube:hover { background-color: #a22824; }
+        .button-kick { background-color: #52ff00; color: #0b0f0a;}
+        .button-kick:hover { background-color: #48e000; }
+
+        .theme-switcher-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+        }
+        #theme-toggle {
+            background: var(--container-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        #theme-toggle:hover { opacity: 0.8; }
+    </style>
+</head>
+<body>
+    <div class="theme-switcher-container">
+        <button id="theme-toggle">🌙</button>
+    </div>
+
+    <div class="header">
+        <img src="https://5a3864bbc6.cbaul-cdnwnd.com/a5752067f9d5fdee0a74b486f3ae9c23/200000099-a11d7a11d8/LOGO%20OTALDOTROIA.jpeg?ph=5a3864bbc6" alt="Logo do Canal">
+        <h1>Gerenciador de Lives</h1>
+    </div>
+
+    <div class="container">
+        <h2>Cadastrar Nova Live</h2>
+        <ul>
+            <li><a href="/cadastro/twitch">Cadastrar Live da Twitch</a></li>
+            <li><a href="/cadastro/youtube">Cadastrar Live do YouTube</a></li>
+            <li><a href="/cadastro/kick">Cadastrar Live da Kick</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+    <h2>Exportar Dados</h2>
+    <p>Exporte todos os registros de uma plataforma para um arquivo CSV.</p>
+    <div class="export-buttons">
+        <a href="/export/twitch/csv"><button class="button button-twitch">Exportar Dados Twitch (CSV)</button></a>
+        <a href="/export/youtube/csv"><button class="button button-youtube">Exportar Dados YouTube (CSV)</button></a>
+        <a href="/export/kick/csv"><button class="button button-kick">Exportar Dados Kick (CSV)</button></a>
+    </div>
+</div>
+
+    <style>
+    .export-buttons {
+    display: flex;
+    justify-content: center; /* centraliza horizontalmente */
+    gap: 10px; /* espaço entre os botões */
+    }
+    </style>
+
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        const applyTheme = () => {
+            if (localStorage.getItem('theme') === 'dark') {
+                body.classList.add('dark-mode');
+                themeToggle.textContent = '☀️';
+            } else {
+                body.classList.remove('dark-mode');
+                themeToggle.textContent = '🌙';
+            }
+        };
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
+            applyTheme();
+        });
+        document.addEventListener('DOMContentLoaded', applyTheme);
+    </script>
+</body>
+</html>
