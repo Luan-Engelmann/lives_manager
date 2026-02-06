@@ -1,65 +1,167 @@
-🎥 Sistema de Controle de Lives
+📊 Lives Manager (Gerenciador de Lives)
 
-Um sistema desenvolvido para monitorar e gerenciar transmissões ao vivo em múltiplas plataformas, como Twitch e Kick, oferecendo insights estratégicos sobre desempenho, engajamento e informações financeiras.
+A solução completa para gerir as suas transmissões.
 
-🚀 Benefícios
+O Lives Manager é uma aplicação web robusta desenvolvida para auxiliar streamers a gerir, registar e analisar as métricas das suas transmissões em múltiplas plataformas. Com uma interface moderna e intuitiva, permite o controlo total dos seus dados pós-live.
 
-Acompanhamento em tempo real: monitore suas transmissões com facilidade.
+🚀 Funcionalidades Principais
 
-Insights estratégicos: dados de engajamento e finanças consolidados para decisões inteligentes.
+📡 Gestão Multiplataforma
 
-Identificação de tendências: descubra padrões de crescimento e desempenho do canal.
+🟣 Twitch
 
-Interface intuitiva: controle simples, rápido e visualmente agradável.
+Registo detalhado com validação inteligente de moeda (USD/BRL).
 
-🛠 Funcionalidades
+Controlo de média de visualizações e novos inscritos.
 
-Cadastro de lives: Twitch e Kick.
+Máscaras de input automáticas.
 
-Alternância entre modos Light e Black.
+🔴 YouTube
 
-Exportação de dados para Excel.
+Métricas específicas como Picos Simultâneos e Likes.
 
-Visualização de métricas financeiras e de engajamento.
+Cálculo de médias e registo de horários.
 
-Favicon com logo do canal.
+🟢 Kick
 
-Botões centralizados e layout aprimorado para melhor experiência do usuário.
+Suporte completo com identidade visual personalizada (Tema Verde).
 
-📈 Benefícios Esperados
+Campos adaptados para a realidade da plataforma.
 
-Controle detalhado e organizado do desempenho das transmissões.
+🎨 Interface do Usuário (UI/UX)
 
-Facilita identificar padrões e tendências de crescimento.
+🌓 Modo Escuro/Claro: Alternância de tema fluida com persistência de preferência (salvo no navegador).
 
-Consolida informações financeiras e de engajamento para decisões estratégicas.
+📱 Design Responsivo: Formulários adaptados para funcionar perfeitamente em Desktop e Mobile.
 
-Oferece visualização simples e intuitiva para acompanhamento em tempo real.
+✨ Identidade Visual: Suporte total para Logo do canal e Favicon personalizados via URL externa.
 
-🗺 Roadmap
+⚙️ Tratamento de Dados & Backend
 
-Versão 2.0:
+Sanitização de Moeda: Campos monetários formatam automaticamente enquanto o utilizador digita (ex: R$ 1.250,00) e são salvos como float (ex: 1250.00) no banco de dados.
 
- Nova interface com layout moderno.
+Suporte a Decimais: Médias de visualização aceitam valores quebrados (ex: 3,4).
 
- Exportação de dados para Excel.
+Inputs Inteligentes: Seletores nativos de Data e Hora.
 
- Botão para alternar entre modos Light e Black.
+📂 Exportação
 
- Centralização dos botões de exportação.
+Relatórios CSV: Botões dedicados para descarregar todos os registos de cada plataforma em formato .csv (compatível com Excel e Google Sheets).
 
- Favicon com a logo do canal.
+🛠️ Stack Tecnológico
 
- Interface diferenciada no cadastro de lives.
+Área
 
- Cadastro de lives na plataforma Kick.
+Tecnologia
 
- Inserir logo do canal na página inicial e nos cadastros de lives.
+Descrição
 
-💻 Tecnologias
+Backend
 
-Python / FastAPI
 
-HTML / CSS / JS
 
-Excel (para exportação de dados)
+Linguagem base do projeto.
+
+Framework
+
+
+
+Framework web de alta performance.
+
+Servidor
+
+
+
+Servidor ASGI.
+
+Database
+
+
+
+Banco de dados relacional leve e nativo.
+
+Frontend
+
+
+
+Estrutura semântica e Jinja2 Templates.
+
+📂 Estrutura do Projeto
+
+lives_manager/
+│
+├── static/              # Arquivos estáticos
+│   └── LOGO 3.jpeg      # (Opcional) Logo local
+│
+├── templates/           # O coração do Frontend
+│   ├── index.html            # Dashboard Principal
+│   ├── cadastro_twitch.html  # Módulo Twitch
+│   ├── cadastro_youtube.html # Módulo YouTube
+│   └── cadastro_kick.html    # Módulo Kick
+│
+├── main.py              # Cérebro da aplicação (Rotas, DB, Lógica)
+├── lives.db             # Banco de dados (Gerado automaticamente)
+└── requirements.txt     # Dependências do Python
+
+
+⚡ Guia de Instalação
+
+Siga os passos abaixo para rodar o projeto na sua máquina.
+
+1. Clonar o repositório
+
+git clone [https://github.com/SEU-USUARIO/lives-manager.git](https://github.com/SEU-USUARIO/lives-manager.git)
+cd lives-manager
+
+
+2. Instalar dependências
+
+# Opção A: Usando requirements.txt
+pip install -r requirements.txt
+
+# Opção B: Manualmente
+python -m pip install fastapi "uvicorn[standard]" jinja2 python-multipart
+
+
+3. Rodar a aplicação
+
+python -m uvicorn main:app --reload
+
+
+4. Acessar
+
+Abra o seu navegador favorito e acesse:
+
+https://www.google.com/search?q=http://127.0.0.1:8000
+
+📝 Notas da Versão 2.1
+
+⚠️ Atualização Crítica: Se está a atualizar de uma versão anterior, siga estes passos:
+
+Delete o arquivo antigo lives.db.
+
+Reinicie o servidor.
+
+O sistema recriará o banco de dados automaticamente com as novas colunas REAL (para decimais) e os novos campos do YouTube.
+
+🤝 Contribuição
+
+Contribuições são muito bem-vindas!
+
+Faça um Fork do projeto.
+
+Crie uma Branch para a sua Feature (git checkout -b feature/NovaFeature).
+
+Faça o Commit (git commit -m 'Adicionando nova feature').
+
+Faça o Push (git push origin feature/NovaFeature).
+
+Abra um Pull Request.
+
+📄 Licença
+
+Este projeto está sob a licença MIT.
+
+<div align="center">
+<sub>Desenvolvido com 💜 por <b>LuanTech</b>.</sub>
+</div>
